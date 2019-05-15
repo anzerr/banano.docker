@@ -1,0 +1,3 @@
+[submodule "banano"]
+	path = banano
+	url = https://github.com/BananoCoin/banano.git
