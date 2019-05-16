@@ -1,17 +1,13 @@
 
-const util = require('dockerfile.util'),
-	mkdir = require('fs.mkdirp'),
-	path = require('path'),
-	fs = require('fs.promisify');
+const util = require('dockerfile.util');
 
 const ENUM = {BUILD: 0, FINAL: 1};
 
-class Node extends util.Build {
+class Node extends require('../base.js') {
 
 	constructor(hash, version, build) {
 		super();
 		this.dockerfile.push(new util.Dockerfile());
-		this.author = 'anzerr';
 		this.version = version;
 		if (!build) {
 			this.path = `docker/${this.version}`;
@@ -19,10 +15,8 @@ class Node extends util.Build {
 			this.dockerName = 'Buildfile';
 		}
 		this.hash = hash;
-		this.cache = true;
 		this.env = {
 			BOOST_ROOT: '/tmp/boost_install',
-			NETWORK: 'live',
 			REPO: 'https://github.com/BananoCoin/banano.git',
 			BOOST_BASENAME: 'boost_1_69_0',
 			BOOST_ARCHIVE: 'boost_1_69_0.tar.bz2',
@@ -44,8 +38,7 @@ class Node extends util.Build {
 				'apk upgrade',
 				'apk --update add --no-cache --virtual .source-tools ' + [
 					'git', 'cmake', 'ninja', 'alpine-sdk',
-					'linux-headers', 'binutils',
-					'bash', 'apache2', 'apache2-ssl', 'alpine-sdk', 'openssl', 'openssl-dev', 'boost-dev', 'curl-dev'
+					'linux-headers', 'binutils', 'openssl', 'openssl-dev', 'boost-dev', 'curl-dev'
 				].join(' '),
 			]).run([ // build boost
 				'wget --quiet -O "${BOOST_ARCHIVE}.new" "${BOOST_URL}"',
@@ -70,27 +63,12 @@ class Node extends util.Build {
 				`cmake /tmp/src -DBOOST_ROOT=${this.env.BOOST_ROOT} -DBOOST_LIBRARYDIR=${this.env.BOOST_LIBRARYDIR} -DACTIVE_NETWORK=nano_${this.env.NETWORK}_network`,
 				'echo "cmake DONE"',
 				'make bananode',
-				'cd ..',
-				'echo ${NETWORK} > /etc/nano-network',
 				'strip /tmp/build/bananode'
 			]);
 			this.dockerfile[ENUM.FINAL]
 				.from('alpine:3.9')
 				.copy('--from=0 /tmp/build/bananode /usr/bin')
-				.copy('--from=0 /etc/nano-network /etc')
-				.cmd('["bananode"]');
-		});
-	}
-
-	package() {
-		return fs.readFile(path.join(__dirname, '../package.json')).then((res) => {
-			return JSON.parse(res.toString());
-		});
-	}
-
-	toFile() {
-		return mkdir(this.path).then(() => {
-			return super.toFile();
+				.entrypoint('["bananode"]');
 		});
 	}
 

@@ -17,6 +17,14 @@ or in a Dockerfile images can be found on [hub.docker.com](https://hub.docker.co
 FROM anzerr/banano:18
 ...
 ```
+To run a node
+``` bash
+ # in memory test
+docker run --name node --tmpfs /root:rw -p 7072:7072 -e "BAN_NETWORK=live" anzerr/banano:18-daemon
+
+# run node
+docker run -d -p 54000:54000/udp -p 54000:54000 -p [::1]:55000:55000 -p 7072:7072 -v ~:/root -e "BAN_NETWORK=live" --name node --restart=unless-stopped anzerr/banano:18-daemon
+```
 
 #### `Build`
 ``` bash
@@ -27,3 +35,11 @@ git submodule update --init --recursive
 npm run update # update docker images
 node bin/index.js --name banano:nightly # run the build for an image
 ```
+
+#### `Versions`
+| Version        					| Description 									|
+| ------------- 					| -----------------								|
+| anzerr/banano:nightly      		| node binary on built from the latest commit 	|
+| anzerr/banano:18      			| node binary on built from tag "v18.0" 		|
+| anzerr/banano:nightly-daemon    	| nightly binary started as a daemon 			|
+| anzerr/banano:18-daemon      		| v18.0 binary started as a daemon 				|
