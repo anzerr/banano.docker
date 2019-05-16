@@ -2,7 +2,16 @@
 ### `Intro`
 These are docker images for the Banano node pushed to be as small as possible. The image is 5mb having only the Banano binary on alpine.
 
-#### `Install`
+#### `Usage`
+``` bash
+docker pull anzerr/banano:18
+```
+or
+``` bash
+FROM anzerr/banano:18
+```
+
+#### `Build`
 ``` bash
 git clone --recurse-submodules -j8 git://github.com/anzerr/banano.docker.git
 git submodule update --init --recursive
