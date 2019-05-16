@@ -1,4 +1,7 @@
 
+[logo]: https://banano.cc/assets/bananologo.svg "BANANO"
+![alt text][logo]
+
 ### `Intro`
 These are docker images for the Banano node pushed to be as small as possible. The image is 5mb having only the Banano binary on alpine.
 
