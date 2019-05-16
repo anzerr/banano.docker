@@ -12,7 +12,7 @@ docker pull anzerr/banano:18
 docker run --rm anzerr/banano:18 --version
 #  Version 18.0
 ```
-or in a Dockerfile
+or in a Dockerfile images can be found on [hub.docker.com](https://hub.docker.com/r/anzerr/banano)
 ``` Dockerfile
 FROM anzerr/banano:18
 ...
