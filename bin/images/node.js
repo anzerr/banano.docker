@@ -20,7 +20,8 @@ class Node extends require('../base.js') {
 			REPO: 'https://github.com/BananoCoin/banano.git',
 			BOOST_BASENAME: 'boost_1_69_0',
 			BOOST_ARCHIVE: 'boost_1_69_0.tar.bz2',
-			BOOST_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2',
+			// BOOST_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2',
+			BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true',
 			BOOST_ARCHIVE_SHA256: '8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406'
 		};
 	}

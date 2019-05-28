@@ -3,7 +3,7 @@ ENV BOOST_ROOT=/tmp/boost_install
 ENV REPO=https://github.com/BananoCoin/banano.git
 ENV BOOST_BASENAME=boost_1_69_0
 ENV BOOST_ARCHIVE=boost_1_69_0.tar.bz2
-ENV BOOST_URL=https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2
+ENV BOOST_URL=https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true
 ENV BOOST_ARCHIVE_SHA256=8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406
 RUN apk update && \
 	apk upgrade && \
