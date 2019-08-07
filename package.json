@@ -1,8 +1,8 @@
 {
 	"name": "banano",
 	"version": "1.0.6",
+	"private": true,
 	"description": "",
-	"main": "index.js",
 	"scripts": {
 		"update": "cd banano && git pull origin master && cd .. && node bin/index.js",
 		"build": "npm run update && node bin/index.js --name banano:1"
