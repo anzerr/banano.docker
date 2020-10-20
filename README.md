@@ -8,13 +8,13 @@ These are Docker images for the Banano node optimised to be as small as possible
 #### `Usage`
 This Can be use as a ci or the base image/layer to build larger project
 ``` bash
-docker pull anzerr/banano:18
-docker run --rm anzerr/banano:18 --version
-#  Version 18.0
+docker pull anzerr/banano:20
+docker run --rm anzerr/banano:20 --version
+#  Version 20.0
 ```
 or in a Dockerfile images can be found on [hub.docker.com](https://hub.docker.com/r/anzerr/banano)
 ``` Dockerfile
-FROM anzerr/banano:18
+FROM anzerr/banano:20
 ...
 ```
 To run a node

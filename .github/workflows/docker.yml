@@ -19,8 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: docker.pkg.github.com
           args: |
-            cd docker/20 &&
-            docker build -t anzerr/banano:20 -t anzerr/banano:latest . &&
+            docker build -t anzerr/banano:20 -t anzerr/banano:latest -f docker/20 . &&
             docker push anzerr/banano:20 &&
             docker push anzerr/banano:latest &&
             docker build -t anzerr/banano:20-daemon -t anzerr/banano:latest-daemon -f docker/20/daemon . &&
