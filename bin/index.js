@@ -6,9 +6,11 @@ const {Cli, Map} = require('cli.util'),
 
 const builds = {
 	'banano:nightly': [null, 'nightly', Node],
-	'banano:18': ['4c370527441282bb5945fb3c83ca19a660b9f209', '18', Node],
 	'banano:nightly-daemon': [null, 'nightly', Daemon],
-	'banano:18-daemon': [null, '18', Daemon]
+	'banano:18': ['4c370527441282bb5945fb3c83ca19a660b9f209', '18', Node],
+	'banano:18-daemon': [null, '18', Daemon],
+	'banano:20': ['67006cbffa1434da027db2daaf6e38a32006d3e2', '20', Node],
+	'banano:20-daemon': [null, '20', Daemon]
 };
 
 let cli = new Cli(process.argv, [

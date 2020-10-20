@@ -20,10 +20,10 @@ FROM anzerr/banano:18
 To run a node
 ``` bash
  # in memory test
-docker run --name node --tmpfs /root:rw -p 7072:7072 -e "BAN_NETWORK=live" anzerr/banano:18-daemon
+docker run --name node --tmpfs /root:rw -p 7072:7072 -e "BAN_NETWORK=live" anzerr/banano:20-daemon
 
 # run node
-docker run -d -p 54000:54000/udp -p 54000:54000 -p [::1]:55000:55000 -p 7072:7072 -v ~:/root -e "BAN_NETWORK=live" --name node --restart=unless-stopped anzerr/banano:18-daemon
+docker run -d -p 54000:54000/udp -p 54000:54000 -p [::1]:55000:55000 -p 7072:7072 -v ~:/root -e "BAN_NETWORK=live" --name node --restart=unless-stopped anzerr/banano:20-daemon
 ```
 
 #### `Build`

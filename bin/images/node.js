@@ -18,6 +18,7 @@ class Node extends require('../base.js') {
 		this.env = {
 			BOOST_ROOT: '/tmp/boost_install',
 			REPO: 'https://github.com/BananoCoin/banano.git',
+			NETWORK: 'live',
 			BOOST_BASENAME: 'boost_1_69_0',
 			BOOST_ARCHIVE: 'boost_1_69_0.tar.bz2',
 			// BOOST_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2',

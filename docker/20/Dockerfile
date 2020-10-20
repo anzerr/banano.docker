@@ -19,7 +19,7 @@ RUN wget --quiet -O "${BOOST_ARCHIVE}.new" "${BOOST_URL}" && \
 	./bootstrap.sh --with-libraries=thread,log,filesystem,program_options && \
 	./b2 -d1 --prefix="${BOOST_ROOT}" link=static install && \
 	echo "boost build done"
-RUN git clone --recurse-submodules -j8 https://github.com/BananoCoin/banano.git /tmp/src && cd /tmp/src && git reset --hard 4c370527441282bb5945fb3c83ca19a660b9f209 && \
+RUN git clone --recurse-submodules -j8 https://github.com/BananoCoin/banano.git /tmp/src && cd /tmp/src && git reset --hard 67006cbffa1434da027db2daaf6e38a32006d3e2 && \
 	mkdir -p /tmp/build && \
 	cd /tmp/build && \
 	cmake /tmp/src -DBOOST_ROOT=/tmp/boost_install -DBOOST_LIBRARYDIR=undefined -DACTIVE_NETWORK=nano_live_network && \

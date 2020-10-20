@@ -1,6 +1,7 @@
 FROM alpine:3.9
 ENV BOOST_ROOT=/tmp/boost_install
 ENV REPO=https://github.com/BananoCoin/banano.git
+ENV NETWORK=live
 ENV BOOST_BASENAME=boost_1_69_0
 ENV BOOST_ARCHIVE=boost_1_69_0.tar.bz2
 ENV BOOST_URL=https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true
@@ -19,10 +20,9 @@ RUN wget --quiet -O "${BOOST_ARCHIVE}.new" "${BOOST_URL}" && \
 	./bootstrap.sh --with-libraries=thread,log,filesystem,program_options && \
 	./b2 -d1 --prefix="${BOOST_ROOT}" link=static install && \
 	echo "boost build done"
-RUN  && \
-	mkdir -p /tmp/build && \
+RUN mkdir -p /tmp/build && \
 	cd /tmp/build && \
-	cmake /tmp/src -DBOOST_ROOT=/tmp/boost_install -DBOOST_LIBRARYDIR=undefined -DACTIVE_NETWORK=nano_undefined_network && \
+	cmake /tmp/src -DBOOST_ROOT=/tmp/boost_install -DBOOST_LIBRARYDIR=undefined -DACTIVE_NETWORK=nano_live_network && \
 	echo "cmake DONE" && \
 	make bananode && \
 	strip /tmp/build/bananode
