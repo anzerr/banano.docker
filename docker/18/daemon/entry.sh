@@ -65,6 +65,5 @@ while true; do
 		bananode --daemon &
 		pid="$!"
 		sleep 5
-		find "${nodedir}/log" -type f -name '*' -exec tail -f {} + &
 	fi
 done >> "${logfile}" 2>&1

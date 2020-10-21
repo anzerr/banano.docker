@@ -33,7 +33,7 @@ class Node extends require('../base.js') {
 	build() {
 		return super.build().then(() => {
 			this.dockerfile[ENUM.BUILD]
-				.from('alpine:3.9')
+				.from('alpine:3.11.6')
 				.env(this.env);
 			if (!this.hash) {
 				this.dockerfile[ENUM.BUILD].copy('./banano /tmp/src');

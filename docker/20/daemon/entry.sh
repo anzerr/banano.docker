@@ -24,13 +24,17 @@ nodedir="${HOME}/BananoData${dirSuffix}"
 dbFile="${nodedir}/data.ldb"
 mkdir -p "${nodedir}"
 
-if [ ! -f "${nodedir}/config.json" ]; then
-        echo "Config File not found, adding default."
-        cp "/node/config/${network}.json" "${nodedir}/config.json"
-fi
+echo "Config File not found, adding default."
+rm -f ${nodedir}/*.json
+rm -f ${nodedir}/*.toml
+cp "/node/config/config-node.toml" "${nodedir}/config-node.toml"
+cp "/node/config/config-rpc.toml" "${nodedir}/config-rpc.toml"
+#cp "/node/config/live.json" "${nodedir}/config.json"
+rm -f ${nodedir}/logs/*
+
 # Start watching the log file we are going to log output to
-logfile="${nodedir}/nano-docker-output.log"
-tail -F "${logfile}" &
+#logfile="${nodedir}/nano-docker-output.log"
+#tail -F "${logfile}" &
 
 pid=''
 firstTimeComplete=''
@@ -65,6 +69,5 @@ while true; do
 		bananode --daemon &
 		pid="$!"
 		sleep 5
-		find "${nodedir}/log" -type f -name '*' -exec tail -f {} + &
 	fi
 done >> "${logfile}" 2>&1

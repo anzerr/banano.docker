@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.11.6
 ENV BOOST_ROOT=/tmp/boost_install
 ENV REPO=https://github.com/BananoCoin/banano.git
 ENV NETWORK=live
