@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           args: |
-            docker build -t anzerr/banano:20 -f docker/20/Dockerfile . &&
+            docker build -t anzerr/banano:20 -t anzerr/banano:latest -f docker/20/Dockerfile . &&
             docker push anzerr/banano:20 &&
             docker push anzerr/banano:latest &&
             docker build -t anzerr/banano:20-daemon -t anzerr/banano:latest-daemon -f docker/20/daemon/Dockerfile . &&
