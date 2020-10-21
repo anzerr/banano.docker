@@ -5,7 +5,7 @@ const ENUM = {BUILD: 0, FINAL: 1};
 
 class Node extends require('../base.js') {
 
-	constructor(hash, version, build) {
+	constructor(hash, version, build, env) {
 		super();
 		this.dockerfile.push(new util.Dockerfile());
 		this.version = version;
@@ -23,8 +23,10 @@ class Node extends require('../base.js') {
 			BOOST_ARCHIVE: 'boost_1_69_0.tar.bz2',
 			// BOOST_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2',
 			BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true',
-			BOOST_ARCHIVE_SHA256: '8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406'
+			BOOST_ARCHIVE_SHA256: '8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406',
+			...(env || {})
 		};
+		console.log(this.version, this.env);
 	}
 
 	build() {

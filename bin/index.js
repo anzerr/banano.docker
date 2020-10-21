@@ -4,12 +4,27 @@ const {Cli, Map} = require('cli.util'),
 	Node = require('./images/node.js'),
 	Daemon = require('./images/daemon.js');
 
+const BOOST = {
+	VERSION_69: {
+		BOOST_BASENAME: 'boost_1_69_0',
+		BOOST_ARCHIVE: 'boost_1_69_0.tar.bz2',
+		BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true',
+		BOOST_ARCHIVE_SHA256: '8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406',
+	},
+	VERSION_70: {
+		BOOST_BASENAME: 'boost_1_70_0',
+		BOOST_ARCHIVE: 'boost_1_70_0.tar.bz2',
+		BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_70_0.tar.bz2?raw=true',
+		BOOST_ARCHIVE_SHA256: '430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778',
+	}
+}
+
 const builds = {
 	'banano:nightly': [null, 'nightly', Node],
 	'banano:nightly-daemon': [null, 'nightly', Daemon],
-	'banano:18': ['4c370527441282bb5945fb3c83ca19a660b9f209', '18', Node],
+	'banano:18': ['4c370527441282bb5945fb3c83ca19a660b9f209', '18', Node, BOOST.VERSION_69],
 	'banano:18-daemon': [null, '18', Daemon],
-	'banano:20': ['67006cbffa1434da027db2daaf6e38a32006d3e2', '20', Node],
+	'banano:20': ['67006cbffa1434da027db2daaf6e38a32006d3e2', '20', Node, BOOST.VERSION_70],
 	'banano:20-daemon': [null, '20', Daemon]
 };
 
@@ -23,7 +38,7 @@ if (!cli.get('name')) {
 	for (let i in builds) {
 		((k, v) => {
 			console.log('update', k, v);
-			let a = new v[2](v[0], v[1], false);
+			let a = new v[2](v[0], v[1], false, v[3] || {});
 			wait.push(a.toFile());
 		})(i, builds[i]);
 	}
