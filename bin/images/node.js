@@ -24,6 +24,7 @@ class Node extends require('../base.js') {
 			// BOOST_URL: 'https://downloads.sourceforge.net/project/boost/boost/1.69.0/boost_1_69_0.tar.bz2',
 			BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true',
 			BOOST_ARCHIVE_SHA256: '8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406',
+			BOOST_LIB: 'thread,log,filesystem,program_options',
 			...(env || {})
 		};
 		console.log(this.version, this.env);
@@ -53,7 +54,7 @@ class Node extends require('../base.js') {
 
 				'cd "${BOOST_BASENAME}"',
 				'./bootstrap.sh --show-libraries',
-				'./bootstrap.sh --with-libraries=thread,log,filesystem,program_options',
+				`./bootstrap.sh --with-libraries=${this.env.BOOST_LIB}`,
 				'./b2 -d1 --prefix="${BOOST_ROOT}" link=static install',
 				'echo "boost build done"',
 			]).run([ // build node

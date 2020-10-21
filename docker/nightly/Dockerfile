@@ -17,7 +17,7 @@ RUN wget --quiet -O "${BOOST_ARCHIVE}.new" "${BOOST_URL}" && \
 	tar xf "${BOOST_ARCHIVE}" && \
 	cd "${BOOST_BASENAME}" && \
 	./bootstrap.sh --show-libraries && \
-	./bootstrap.sh --with-libraries=thread,log,filesystem,program_options && \
+	./bootstrap.sh --with-libraries=undefined && \
 	./b2 -d1 --prefix="${BOOST_ROOT}" link=static install && \
 	echo "boost build done"
 RUN mkdir -p /tmp/build && \

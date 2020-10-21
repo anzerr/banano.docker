@@ -6,6 +6,7 @@ ENV BOOST_BASENAME=boost_1_69_0
 ENV BOOST_ARCHIVE=boost_1_69_0.tar.bz2
 ENV BOOST_URL=https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true
 ENV BOOST_ARCHIVE_SHA256=8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406
+ENV BOOST_LIB=thread,log,filesystem,program_options
 RUN apk update && \
 	apk upgrade && \
 	apk --update add --no-cache --virtual .source-tools git cmake ninja alpine-sdk linux-headers binutils openssl openssl-dev boost-dev curl-dev

@@ -10,12 +10,14 @@ const BOOST = {
 		BOOST_ARCHIVE: 'boost_1_69_0.tar.bz2',
 		BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true',
 		BOOST_ARCHIVE_SHA256: '8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406',
+		BOOST_LIB: 'thread,log,filesystem,program_options'
 	},
 	VERSION_70: {
 		BOOST_BASENAME: 'boost_1_70_0',
 		BOOST_ARCHIVE: 'boost_1_70_0.tar.bz2',
 		BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_70_0.tar.bz2?raw=true',
 		BOOST_ARCHIVE_SHA256: '430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778',
+		BOOST_LIB: 'filesystem,log,program_options,system,thread'
 	}
 }
 
