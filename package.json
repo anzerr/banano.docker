@@ -4,18 +4,13 @@
 	"private": true,
 	"description": "",
 	"scripts": {
-		"update": "cd banano && git pull origin master && cd .. && node bin/index.js",
+		"update:docker": "node bin/index.js",
+		"update": "cd banano && git pull origin master && cd .. && npm run update:docker",
 		"build": "npm run update && node bin/index.js --name banano:1"
 	},
 	"keywords": [],
 	"author": "anzerr",
 	"license": "MIT",
-	"devDependencies": {
-		"eslint-config-basic": "git+https://git@github.com/anzerr/eslintrc.git"
-	},
-	"eslintConfig": {
-		"extends": "eslint-config-basic"
-	},
 	"dependencies": {
 		"dockerfile.util": "git+https://git@github.com/anzerr/dockerfile.util.git",
 		"fs.promisify": "git+https://git@github.com/anzerr/fs.promisify.git",

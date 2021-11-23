@@ -1,4 +1,4 @@
-FROM alpine:3.9
+FROM alpine:3.11.6
 ENV BOOST_ROOT=/tmp/boost_install
 ENV REPO=https://github.com/BananoCoin/banano.git
 ENV NETWORK=live
@@ -6,6 +6,7 @@ ENV BOOST_BASENAME=boost_1_69_0
 ENV BOOST_ARCHIVE=boost_1_69_0.tar.bz2
 ENV BOOST_URL=https://github.com/anzerr/boost.libary/blob/master/boost_1_69_0.tar.bz2?raw=true
 ENV BOOST_ARCHIVE_SHA256=8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406
+ENV BOOST_LIB=thread,log,filesystem,program_options
 COPY ./banano /tmp/src
 RUN apk update && \
 	apk upgrade && \
@@ -17,7 +18,7 @@ RUN wget --quiet -O "${BOOST_ARCHIVE}.new" "${BOOST_URL}" && \
 	tar xf "${BOOST_ARCHIVE}" && \
 	cd "${BOOST_BASENAME}" && \
 	./bootstrap.sh --show-libraries && \
-	./bootstrap.sh --with-libraries=undefined && \
+	./bootstrap.sh --with-libraries=thread,log,filesystem,program_options && \
 	./b2 -d1 --prefix="${BOOST_ROOT}" link=static install && \
 	echo "boost build done"
 RUN mkdir -p /tmp/build && \

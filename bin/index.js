@@ -18,6 +18,21 @@ const BOOST = {
 		BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_70_0.tar.bz2?raw=true',
 		BOOST_ARCHIVE_SHA256: '430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778',
 		BOOST_LIB: 'filesystem,log,program_options,system,thread'
+	},
+	VERSION_70_22: {
+		BOOST_BASENAME: 'boost_1_70_0',
+		BOOST_ARCHIVE: 'boost_1_70_0.tar.bz2',
+		BOOST_URL: 'https://github.com/anzerr/boost.libary/blob/master/boost_1_70_0.tar.bz2?raw=true',
+		BOOST_ARCHIVE_SHA256: '430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778',
+		BOOST_LIB: 'filesystem,log,program_options,system,thread',
+		cmake: [
+			'cmake /tmp/src -DCI_BUILD=OFF -DACTIVE_NETWORK=nano_live_network',
+			'-DNANO_ROCKSDB=ON -DNANO_POW_SERVER=ON -DROCKSDB_LIBRARIES=/usr/local/rocksdb/lib/librocksdb.a',
+			'-DROCKSDB_INCLUDE_DIRS=/usr/local/rocksdb/include &&',
+			'make bananode -j$(nproc) &&',
+			'make banano_rpc -j$(nproc) &&',
+			'make nano_pow_server -j$(nproc)'
+		].join(' ').trim()
 	}
 }
 
@@ -27,7 +42,9 @@ const builds = {
 	'banano:18': ['4c370527441282bb5945fb3c83ca19a660b9f209', '18', Node, BOOST.VERSION_69],
 	'banano:18-daemon': [null, '18', Daemon],
 	'banano:20': ['67006cbffa1434da027db2daaf6e38a32006d3e2', '20', Node, BOOST.VERSION_70],
-	'banano:20-daemon': [null, '20', Daemon]
+	'banano:20-daemon': [null, '20', Daemon],
+	'banano:22': ['ad1f47eba648cef463210aaed9f762b763ba7795', '22', Node, BOOST.VERSION_70_22],
+	'banano:22-daemon': [null, '22', Daemon]
 };
 
 let cli = new Cli(process.argv, [
